@@ -1424,12 +1424,12 @@ footer .logo span { color: var(--green); }
       <input type="hidden" name="form-name" value="beta-methodr">
       <p style="display:none;"><label>Ne pas remplir : <input name="bot-field"></label></p>
         <div class="form-row">
-          <input type="text" class="form-field" placeholder="Prénom *" required>
-          <input type="text" class="form-field" placeholder="Nom *" required>
+          <input type="text" name="prenom" class="form-field" placeholder="Prénom *" required>
+          <input type="text" name="nom" class="form-field" placeholder="Nom *" required>
         </div>
-        <input type="email" class="form-field" placeholder="Email professionnel *" required>
-        <input type="tel" class="form-field" placeholder="Téléphone (optionnel — pour vous rappeler plus vite)">
-        <select class="form-field" required>
+        <input type="email" name="email" class="form-field" placeholder="Email professionnel *" required>
+        <input type="tel" name="telephone" class="form-field" placeholder="Téléphone (optionnel — pour vous rappeler plus vite)">
+        <select name="activite" class="form-field" required>
           <option value="" disabled selected>Votre activité terrain *</option>
           <option>Cuisiniste indépendant</option>
           <option>Agenceur / aménagement intérieur</option>
@@ -1438,7 +1438,7 @@ footer .logo span { color: var(--green); }
           <option>Consultant / formateur terrain</option>
           <option>Autre commercial terrain physique</option>
         </select>
-        <select class="form-field" required>
+        <select name="rdv-semaine" class="form-field" required>
           <option value="" disabled selected>Nombre de RDV clients par semaine *</option>
           <option>1 à 3 RDV / semaine</option>
           <option>4 à 7 RDV / semaine</option>
