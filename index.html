@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodr — Votre directeur commercial IA terrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #050806;
+  --green: #00E87A;
+  --green-dim: rgba(0,232,122,0.12);
+  --green-mid: rgba(0,232,122,0.25);
+  --white: #F2F0E8;
+  --gray: rgba(242,240,232,0.45);
+  --gray-dim: rgba(242,240,232,0.12);
+  --rule: rgba(242,240,232,0.08);
+  --orange: #F0A500;
+  --red: #FF4444;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: rgba(5,8,6,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.nav-logo span { color: var(--green); }
+
+.nav-cta {
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.25rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 6rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,232,122,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0,232,122,0.04) 0%, transparent 60%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 70%);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 880px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--green-dim);
+  border: 1px solid rgba(0,232,122,0.2);
+  border-radius: 100px;
+  padding: 0.35rem 1rem;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--gray);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,232,122,0.3);
+}
+
+.hero-note {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+.hero-stat-strip {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-val {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: -0.03em;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-weight: 300;
+}
+
+/* ── PROBLEM SECTION ── */
+.section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.section-title em {
+  font-style: normal;
+  color: var(--green);
+}
+
+/* Problem cards */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.problem-card {
+  background: var(--black);
+  padding: 2rem;
+  position: relative;
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rule), transparent);
+}
+
+.problem-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.problem-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+.problem-card p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ── HOW IT WORKS ── */
+.how-section {
+  padding: 6rem 2rem;
+  background: rgba(242,240,232,0.02);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.how-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.steps-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 3.5rem;
+  position: relative;
+}
+
+.steps-flow::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--green-dim), var(--green-mid), var(--green-dim));
+}
+
+.step {
+  text-align: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green-dim);
+  border: 1px solid rgba(0,232,122,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--green);
+  margin: 0 auto 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.step-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+.step-desc {
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ── FEATURES ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  background: rgba(242,240,232,0.03);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 0.3s;
+}
+
+.feature-card:hover {
+  border-color: rgba(0,232,122,0.2);
+}
+
+.feature-card.featured {
+  background: var(--green-dim);
+  border-color: rgba(0,232,122,0.2);
+  grid-column: span 2;
+}
+
+.feature-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+
+.feature-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.feature-card p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  line-height: 1.65;
+}
+
+/* ── COACHING DEMO ── */
+.coaching-demo {
+  background: rgba(5,8,6,0.8);
+  border: 1px solid rgba(0,232,122,0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.coaching-header {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.coaching-line {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--white);
+  line-height: 1.5;
+}
+
+.coaching-line:last-child { border: none; }
+
+.coaching-line.positive::before { content: '✓ '; color: var(--green); }
+.coaching-line.warning::before { content: '⚡ '; color: var(--orange); }
+
+.coaching-reco {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--green-dim);
+  border-left: 2px solid var(--green);
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+  color: var(--green);
+  font-size: 0.85rem;
+}
+
+/* ── ROI SECTION ── */
+.roi-section {
+  padding: 6rem 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.roi-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.roi-card {
+  background: rgba(242,240,232,0.03);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.roi-card-head {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.roi-card-head h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+}
+
+.roi-price {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--green);
+}
+
+.roi-rows {
+  padding: 0.5rem 2rem;
+}
+
+.roi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.875rem;
+}
+
+.roi-row:last-child { border-bottom: none; }
+
+.roi-label { color: var(--gray); }
+
+.roi-val {
+  font-family: 'Syne Mono', monospace;
+  font-weight: 600;
+}
+
+.roi-val.positive { color: var(--green); }
+.roi-val.negative { color: var(--orange); }
+
+.roi-total {
+  background: var(--green-dim);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,232,122,0.2);
+}
+
+.roi-total-label {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+}
+
+.roi-total-val {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--green);
+  letter-spacing: -0.04em;
+}
+
+/* ── PRICING ── */
+.pricing-section {
+  padding: 6rem 2rem;
+  background: rgba(242,240,232,0.02);
+  border-top: 1px solid var(--rule);
+}
+
+.pricing-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pricing-card {
+  background: rgba(242,240,232,0.03);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 3rem;
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--green);
+}
+
+.pricing-badge {
+  display: inline-block;
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.pricing-amount {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 4.5rem;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.pricing-amount sup {
+  font-size: 1.5rem;
+  vertical-align: top;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: var(--gray);
+}
+
+.pricing-amount .period {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--gray);
+  letter-spacing: 0;
+}
+
+.pricing-note {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 2.5rem;
+}
+
+.pricing-features {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+.pricing-features li {
+  font-size: 0.875rem;
+  color: var(--gray);
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.pricing-features li::before {
+  content: '→';
+  color: var(--green);
+  flex-shrink: 0;
+  font-family: 'Syne Mono', monospace;
+}
+
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1.1rem 2.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,232,122,0.35);
+}
+
+.pricing-disclaimer {
+  margin-top: 1rem;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* ── TESTIMONIAL / SOCIAL PROOF ── */
+.proof-section {
+  padding: 5rem 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.proof-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.proof-quote {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  color: var(--white);
+  max-width: 780px;
+}
+
+.proof-quote em {
+  font-style: normal;
+  color: var(--green);
+}
+
+/* ── FORM SECTION ── */
+.form-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(180deg, rgba(0,232,122,0.04) 0%, transparent 100%);
+  border-top: 1px solid rgba(0,232,122,0.1);
+}
+
+.form-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.form-title em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.form-sub {
+  color: var(--gray);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+
+.form-field {
+  background: rgba(242,240,232,0.05);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.875rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.form-field::placeholder { color: rgba(242,240,232,0.3); }
+
+.form-field:focus {
+  border-color: rgba(0,232,122,0.4);
+  background: rgba(0,232,122,0.04);
+}
+
+select.form-field option {
+  background: #0f1410;
+  color: var(--white);
+}
+
+.form-submit {
+  background: var(--green);
+  color: var(--black);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,232,122,0.3);
+}
+
+.form-legal {
+  font-size: 0.72rem;
+  color: rgba(242,240,232,0.25);
+  margin-top: 0.75rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem 2rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer .logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  color: var(--white);
+  font-size: 1.1rem;
+}
+
+footer .logo span { color: var(--green); }
+
+/* ── SCORE DEMO ── */
+.score-demo {
+  background: rgba(5,8,6,0.9);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+.score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.score-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.score-global {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--orange);
+  letter-spacing: -0.04em;
+}
+
+.score-label { font-size: 0.7rem; color: var(--gray); }
+
+.phase-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.phase-name {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.phase-track {
+  background: rgba(242,240,232,0.05);
+  border-radius: 2px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.phase-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.5s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.phase-score {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .steps-flow {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .steps-flow::before { display: none; }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .feature-card.featured { grid-column: span 1; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .pricing-features { grid-template-columns: 1fr; }
+
+  .roi-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hero-stat-strip { gap: 2rem; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content > * {
+  animation: fadeUp 0.7s ease both;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Methodr<span>.</span></div>
+  <a href="#essai" class="nav-cta">Essayer gratuitement →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Bêta ouverte — 3 mois offerts</div>
+    <h1>Vous perdez des deals.<br>Vous ne savez pas <em>pourquoi.</em></h1>
+    <p class="hero-sub">Après chaque RDV, vous savez exactement ce qui a fonctionné — et ce qui vous a coûté le deal.</p>
+    <div class="hero-cta-group">
+      <a href="#essai" class="btn-primary">
+        Essayer 14 jours gratuitement
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <span class="hero-note">Sans carte bancaire · Accès complet · Annulable à tout moment</span>
+    </div>
+    <div class="hero-stat-strip">
+      <div class="stat-item">
+        <div class="stat-val">70%</div>
+        <div class="stat-label">du temps d'un commercial<br>pas passé à vendre</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">&lt;10min</div>
+        <div class="stat-label">pour recevoir votre<br>compte rendu + coaching</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">×367</div>
+        <div class="stat-label">ROI estimé dès<br>le premier mois</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">0</div>
+        <div class="stat-label">concurrent direct<br>sur le terrain physique</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTEUR SECTION -->
+<section style="padding: 7rem 2rem; background: var(--black); border-top: 1px solid rgba(0,232,122,0.12); border-bottom: 1px solid rgba(0,232,122,0.12); position:relative; overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,232,122,0.06) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="max-width: 860px; margin: 0 auto; text-align:center; position:relative;">
+    <div class="section-label" style="justify-content:center;display:flex;">Ce que Methodr fait</div>
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-0.04em;line-height:1.1;margin:1.25rem 0 2rem;color:var(--white);">
+      Methodr enregistre vos entretiens<br>clients terrain, les analyse et vous<br>coache en <em style="color:var(--green);font-style:normal;">moins de 10 minutes.</em>
+    </h2>
+    <div style="width:60px;height:2px;background:var(--green);margin:0 auto 2rem;border-radius:2px;"></div>
+    <p style="font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--gray);font-weight:300;line-height:1.65;max-width:640px;margin:0 auto 3rem;">
+      Votre premier directeur commercial. Il était dans la salle avec vous. Il a tout entendu. Et il vous dit ce que vous devez changer — maintenant, pas dans six mois.
+    </p>
+    <a href="#essai" style="display:inline-flex;align-items:center;gap:0.75rem;background:#CC0000;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1rem;padding:0.9rem 2rem;border-radius:50px;text-decoration:none;letter-spacing:0.02em;box-shadow:0 0 0 0 rgba(204,0,0,0.5);animation:rec-pulse 2s ease-in-out infinite;">
+      <span style="width:10px;height:10px;background:#fff;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+      REC — Essayer gratuitement
+    </a>
+    <style>@keyframes rec-pulse{0%,100%{box-shadow:0 0 0 0 rgba(204,0,0,0.5)}50%{box-shadow:0 0 0 12px rgba(204,0,0,0)}}</style>
+  </div>
+</section>
+
+<!-- PLAN DE VENTE SECTION -->
+<section style="padding: 7rem 2rem; border-bottom: 1px solid var(--rule);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">Le plan de vente — pourquoi c'est fondamental</div>
+    <h2 class="section-title">Un RDV commercial a une structure.<br><em>Methodr la respecte. Et la mesure.</em></h2>
+    <p style="color:var(--gray);font-size:1rem;font-weight:300;max-width:620px;margin:1.5rem 0 3.5rem;line-height:1.7;">
+      Chaque entretien terrain suit des phases. Icebreaker, découverte, argumentation, traitement des objections, closing. Ce n'est pas une option — c'est ce qui sépare ceux qui signent de ceux qui rentrent les mains vides. Methodr analyse chaque phase de votre RDV et vous dit exactement où vous en êtes.
+    </p>
+
+    <!-- Phase explainer -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin-bottom:3rem;">
+
+      <div style="background:var(--black);padding:1.75rem 1.25rem;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--green-dim);border:1px solid rgba(0,232,122,0.25);display:flex;align-items:center;justify-content:center;font-family:'Syne Mono',monospace;font-size:0.65rem;color:var(--green);margin-bottom:1rem;">01</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;">Icebreaker</div>
+        <p style="font-size:0.75rem;color:var(--gray);line-height:1.5;">Créer la connexion. Mettre le client à l'aise. Les premières 3 minutes définissent tout le reste.</p>
+      </div>
+
+      <div style="background:var(--black);padding:1.75rem 1.25rem;border-left:1px solid var(--rule);">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--green-dim);border:1px solid rgba(0,232,122,0.25);display:flex;align-items:center;justify-content:center;font-family:'Syne Mono',monospace;font-size:0.65rem;color:var(--green);margin-bottom:1rem;">02</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;">Découverte</div>
+        <p style="font-size:0.75rem;color:var(--gray);line-height:1.5;">Qualifier le budget, le décideur, l'urgence, les besoins réels. <strong style="color:var(--white);">C'est la phase la plus sous-estimée.</strong></p>
+      </div>
+
+      <div style="background:var(--black);padding:1.75rem 1.25rem;border-left:1px solid var(--rule);">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--green-dim);border:1px solid rgba(0,232,122,0.25);display:flex;align-items:center;justify-content:center;font-family:'Syne Mono',monospace;font-size:0.65rem;color:var(--green);margin-bottom:1rem;">03</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;">Argumentation</div>
+        <p style="font-size:0.75rem;color:var(--gray);line-height:1.5;">Présenter les bons arguments au bon moment. Pas avant. Pas après. En lien direct avec la découverte.</p>
+      </div>
+
+      <div style="background:var(--black);padding:1.75rem 1.25rem;border-left:1px solid var(--rule);">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--green-dim);border:1px solid rgba(0,232,122,0.25);display:flex;align-items:center;justify-content:center;font-family:'Syne Mono',monospace;font-size:0.65rem;color:var(--green);margin-bottom:1rem;">04</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;">Objections</div>
+        <p style="font-size:0.75rem;color:var(--gray);line-height:1.5;">Traiter "c'est trop cher", "je vais réfléchir", "je verrai ailleurs". Chaque objection a une réponse. Methodr vous l'apprend.</p>
+      </div>
+
+      <div style="background:var(--black);padding:1.75rem 1.25rem;border-left:1px solid var(--rule);">
+        <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,232,122,0.25);border:1px solid rgba(0,232,122,0.5);display:flex;align-items:center;justify-content:center;font-family:'Syne Mono',monospace;font-size:0.65rem;color:var(--green);margin-bottom:1rem;">05</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:0.5rem;color:var(--green);">Closing</div>
+        <p style="font-size:0.75rem;color:var(--gray);line-height:1.5;"><strong style="color:var(--white);">La phase que tout le monde rate.</strong> Provoquer la décision sans pression. C'est une compétence. Ça s'apprend.</p>
+      </div>
+    </div>
+
+    <!-- Key insight -->
+    <div style="background:var(--green-dim);border:1px solid rgba(0,232,122,0.2);border-radius:8px;padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;">
+      <div>
+        <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Ce que Methodr fait pour vous</div>
+        <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.02em;line-height:1.4;color:var(--white);">Methodr écoute votre entretien, identifie chaque phase, la score de 0 à 100 selon votre méthode, et vous explique précisément ce qui manquait — avec une reformulation concrète à utiliser la prochaine fois.</p>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3.5rem;color:var(--green);letter-spacing:-0.05em;line-height:1;">+28%</div>
+        <div style="font-size:0.75rem;color:var(--gray);max-width:140px;line-height:1.4;">de win rate avec un programme de coaching structuré</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section style="padding: 6rem 2rem; border-top: 1px solid var(--rule);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">Le problème</div>
+    <h2 class="section-title">Vous vendez à l'instinct.<br><em>Sans jamais savoir ce qui coince.</em></h2>
+    <p style="color:var(--gray);font-size:1rem;font-weight:300;max-width:580px;margin:1.25rem 0 3rem;line-height:1.7;">Chaque jour sur le terrain, vous accumulez des deals perdus dont vous ignorez la cause. Voici pourquoi.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.2);border-radius:8px;overflow:hidden;">
+
+      <div style="background:#0a0505;padding:2rem;position:relative;">
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:6px;margin-bottom:1.25rem;">
+          <span style="color:#FF4444;font-size:1rem;font-weight:800;font-family:'Syne Mono',monospace;">✕</span>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:var(--white);">90 min de saisie CRM par jour</div>
+        <p style="font-size:0.8rem;color:rgba(242,240,232,0.4);line-height:1.6;">Du temps de vente pur transformé en corvée administrative. 375 heures par an perdues à retranscrire ce que vous avez déjà dit.</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF4444,transparent);"></div>
+      </div>
+
+      <div style="background:#0a0505;padding:2rem;position:relative;border-left:1px solid rgba(255,68,68,0.15);">
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:6px;margin-bottom:1.25rem;">
+          <span style="color:#FF4444;font-size:1rem;font-weight:800;font-family:'Syne Mono',monospace;">✕</span>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:var(--white);">Zéro feedback sur vos RDV</div>
+        <p style="font-size:0.8rem;color:rgba(242,240,232,0.4);line-height:1.6;">Vous avez bien ou mal qualifié le budget ? Bien traité l'objection prix ? Raté votre closing ? Personne ne vous le dit. Jamais.</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF4444,transparent);"></div>
+      </div>
+
+      <div style="background:#0a0505;padding:2rem;position:relative;border-left:1px solid rgba(255,68,68,0.15);">
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:6px;margin-bottom:1.25rem;">
+          <span style="color:#FF4444;font-size:1rem;font-weight:800;font-family:'Syne Mono',monospace;">✕</span>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:var(--white);">Les mêmes erreurs, en boucle</div>
+        <p style="font-size:0.8rem;color:rgba(242,240,232,0.4);line-height:1.6;">Vous perdez des deals pour les mêmes raisons depuis des mois. Mauvais closing, objection mal traitée, découverte bâclée. Sans diagnostic, rien ne change.</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF4444,transparent);"></div>
+      </div>
+
+      <div style="background:#0a0505;padding:2rem;position:relative;border-top:1px solid rgba(255,68,68,0.15);">
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:6px;margin-bottom:1.25rem;">
+          <span style="color:#FF4444;font-size:1rem;font-weight:800;font-family:'Syne Mono',monospace;">✕</span>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:var(--white);">Pas de directeur commercial</div>
+        <p style="font-size:0.8rem;color:rgba(242,240,232,0.4);line-height:1.6;">Un DC coûte 80 000€/an. En solo ou petite équipe, vous n'avez personne pour vous coacher, vous challenger, vous faire progresser. Vous êtes seul.</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF4444,transparent);"></div>
+      </div>
+
+      <div style="background:#0a0505;padding:2rem;position:relative;border-left:1px solid rgba(255,68,68,0.15);border-top:1px solid rgba(255,68,68,0.15);">
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:6px;margin-bottom:1.25rem;">
+          <span style="color:#FF4444;font-size:1rem;font-weight:800;font-family:'Syne Mono',monospace;">✕</span>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:var(--white);">Le CRM ne reflète pas la réalité</div>
+        <p style="font-size:0.8rem;color:rgba(242,240,232,0.4);line-height:1.6;">Ce que vous saisissez dans le CRM, c'est votre version. Pas ce qui s'est réellement passé. Le manager est aveugle. Vous aussi, finalement.</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF4444,transparent);"></div>
+      </div>
+
+      <div style="background:#0a0505;padding:2rem;position:relative;border-left:1px solid rgba(255,68,68,0.15);border-top:1px solid rgba(255,68,68,0.15);">
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(255,68,68,0.15);border:1px solid rgba(255,68,68,0.3);border-radius:6px;margin-bottom:1.25rem;">
+          <span style="color:#FF4444;font-size:1rem;font-weight:800;font-family:'Syne Mono',monospace;">✕</span>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;color:var(--white);">Aucune visibilité sur votre progression</div>
+        <p style="font-size:0.8rem;color:rgba(242,240,232,0.4);line-height:1.6;">Vous signez ou vous ne signez pas. C'est tout ce que vous savez. Il n'y a aucun indicateur intermédiaire pour savoir si vous vous améliorez vraiment.</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF4444,transparent);"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="section-label">Comment ça marche</div>
+    <h2 class="section-title">1 tap. Ça enregistre.<br><em>En moins de 10 minutes, vous êtes coaché.</em></h2>
+    <div class="steps-flow">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Vous enregistrez</div>
+        <p class="step-desc">Un tap dans l'app mobile avant d'entrer chez votre client. Fonctionne sans connexion internet.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Methodr transcrit</div>
+        <p class="step-desc">L'IA sépare votre voix de celle du client et transcrit l'entretien intégralement.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Score + résumé</div>
+        <p class="step-desc">Votre entretien est scoré de 0 à 100 selon votre méthode commerciale. Résumé en 5 points clés.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Coaching personnalisé</div>
+        <p class="step-desc">3 à 5 feedbacks actionnables. Ce qui a fonctionné. Ce qui manquait. Une reformulation concrète.</p>
+      </div>
+    </div>
+
+    <!-- Score demo -->
+    <div class="score-demo">
+      <div class="score-header">
+        <div>
+          <div class="score-title">Analyse entretien · Aujourd'hui 14h32</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:0.95rem; margin-top:4px;">Visite cuisiniste — Client Dupont</div>
+        </div>
+        <div style="text-align:right">
+          <div class="score-global">63<span style="font-size:1rem;color:var(--gray)">/100</span></div>
+          <div class="score-label">Score global</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-name">Icebreaker</div>
+        <div class="phase-track"><div class="phase-fill" style="width:91%;background:#00E87A"></div></div>
+        <div class="phase-score" style="color:#00E87A">91</div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-name">Découverte</div>
+        <div class="phase-track"><div class="phase-fill" style="width:78%;background:#52A875"></div></div>
+        <div class="phase-score" style="color:#52A875">78</div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-name">Argumentation</div>
+        <div class="phase-track"><div class="phase-fill" style="width:65%;background:#F0A500"></div></div>
+        <div class="phase-score" style="color:#F0A500">65</div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-name">Objections</div>
+        <div class="phase-track"><div class="phase-fill" style="width:55%;background:#F0A500"></div></div>
+        <div class="phase-score" style="color:#F0A500">55</div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-name">Closing</div>
+        <div class="phase-track"><div class="phase-fill" style="width:28%;background:#FF4444"></div></div>
+        <div class="phase-score" style="color:#FF4444">28</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="section-label">Ce que Methodr change concrètement</div>
+  <h2 class="section-title">Chaque feature est là<br><em>pour vous faire signer plus.</em></h2>
+  <p style="color:var(--gray);font-size:1rem;font-weight:300;max-width:580px;margin:1.25rem 0 3.5rem;line-height:1.7;">Pas des gadgets. Pas du jargon IA. Des outils qui répondent à un seul objectif : vous aider à conclure plus de deals, plus vite, avec plus de méthode.</p>
+
+  <!-- Feature 1 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;">
+    <div style="background:var(--black);padding:2.5rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #1 · Zéro perte d'information</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.03em;margin:0 0 1rem;line-height:1.2;">Vous enregistrez. Methodr retient tout. Vous, vous vendez.</h3>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;">Un tap avant d'entrer. Un tap en sortant. Pendant ce temps, vous êtes 100% concentré sur votre client — pas sur la prise de notes. Fonctionne sans connexion. Showroom, chantier, domicile client, parking. Partout.</p>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;">L'upload se fait automatiquement au retour réseau. Aucune manipulation supplémentaire. En moins de 10 minutes, votre entretien complet est transcrit, analysé, scoré.</p>
+      <div style="margin-top:1.5rem;padding:0.875rem 1rem;background:var(--green-dim);border-left:3px solid var(--green);border-radius:0 4px 4px 0;font-size:0.8rem;color:var(--green);line-height:1.5;">→ Vous récupérez 90 min par jour. 375 heures par an. Remises dans la vente.</div>
+    </div>
+    <div style="background:rgba(0,232,122,0.03);padding:2.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:6rem;color:var(--green);letter-spacing:-0.06em;line-height:1;">1</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.5rem;color:var(--white);margin-top:-0.5rem;">tap</div>
+      <div style="font-size:0.8rem;color:var(--gray);margin-top:0.75rem;max-width:160px;">C'est tout. Le reste, c'est Methodr qui s'en occupe.</div>
+    </div>
+  </div>
+
+  <!-- Feature 2 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;">
+    <div style="background:rgba(242,240,232,0.02);padding:2.5rem;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--gray);text-transform:uppercase;margin-bottom:1rem;">Compte rendu généré · M. Dupont · 14h32</div>
+      <div style="background:var(--black);border:1px solid var(--rule);border-radius:6px;padding:1.25rem;font-size:0.82rem;line-height:1.75;">
+        <div style="color:var(--green);font-family:'Syne Mono',monospace;font-size:0.65rem;margin-bottom:0.875rem;letter-spacing:0.1em;padding-bottom:0.75rem;border-bottom:1px solid var(--rule);">RÉSUMÉ AUTOMATIQUE · 1h18 · Score global 63/100</div>
+        <div style="margin-bottom:0.4rem;"><span style="color:var(--gray);font-size:0.75rem;font-family:'Syne Mono',monospace;">PROJET</span><br><span style="color:var(--white);">Cuisine ouverte 22m² — budget 28 000€ validé</span></div>
+        <div style="margin-bottom:0.4rem;margin-top:0.75rem;"><span style="color:var(--gray);font-size:0.75rem;font-family:'Syne Mono',monospace;">DÉCIDEUR</span><br><span style="color:var(--white);">Couple présent — décision commune confirmée</span></div>
+        <div style="margin-bottom:0.4rem;margin-top:0.75rem;"><span style="color:var(--gray);font-size:0.75rem;font-family:'Syne Mono',monospace;">ENGAGEMENT</span><br><span style="color:var(--white);">Devis à envoyer avant vendredi 17h</span></div>
+        <div style="margin-top:0.75rem;"><span style="color:var(--gray);font-size:0.75rem;font-family:'Syne Mono',monospace;">SIGNAL ACHETEUR</span><br><span style="color:var(--white);">"On veut commencer avant l'été" — urgence confirmée</span></div>
+        <div style="margin-top:0.875rem;padding:0.6rem 0.75rem;background:rgba(255,68,68,0.1);border-radius:3px;font-size:0.75rem;color:#FF4444;">⚠ Objection non traitée : délai de pose évoqué 2x</div>
+      </div>
+    </div>
+    <div style="background:var(--black);padding:2.5rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #2 · Compte rendu automatique</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.03em;margin:0 0 1rem;line-height:1.2;">Votre CRM se remplit tout seul. Vraiment.</h3>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;">Budget qualifié, décideur identifié, engagements pris, prochaines étapes, signaux acheteur, objections non traitées. Tout est là — structuré, prêt à partager. En 1 tap vers votre client ou votre manager.</p>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;">Fini le syndrome de la page blanche à 19h. Fini les oublis. Fini les "ah oui il m'avait dit quelque chose sur le délai" trois jours après.</p>
+      <div style="margin-top:1.5rem;padding:0.875rem 1rem;background:var(--green-dim);border-left:3px solid var(--green);border-radius:0 4px 4px 0;font-size:0.8rem;color:var(--green);line-height:1.5;">→ Un compte rendu professionnel envoyé au client dans la foulée. Différenciateur commercial fort.</div>
+    </div>
+  </div>
+
+  <!-- Feature 3 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;">
+    <div style="background:var(--black);padding:2.5rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #3 · Scoring sur-mesure</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.03em;margin:0 0 1rem;line-height:1.2;">Votre méthode. Scorée. Pas celle d'un consultant générique.</h3>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;">Vous avez vos phases, vos critères, vos pondérations. Methodr encode votre playbook commercial et score chaque entretien en conséquence. Un 80/100 sur votre méthode vaut infiniment plus qu'un score générique sorti d'un algorithme qui ne connaît pas votre secteur.</p>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;">Pour la première fois, vous avez des <strong style="color:var(--white);">données objectives</strong> sur vos RDV. Pas des impressions. Des faits.</p>
+      <div style="margin-top:1.5rem;padding:0.875rem 1rem;background:var(--green-dim);border-left:3px solid var(--green);border-radius:0 4px 4px 0;font-size:0.8rem;color:var(--green);line-height:1.5;">→ C'est votre méthode encodée. Vous ne repartez jamais. C'est le switching cost ultime.</div>
+    </div>
+    <div style="background:rgba(242,240,232,0.02);padding:2.5rem;display:flex;flex-direction:column;justify-content:center;gap:0.6rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--gray);text-transform:uppercase;margin-bottom:0.5rem;">Score par phase — votre méthode</div>
+      <div class="phase-row"><div class="phase-name" style="font-size:0.8rem;color:var(--gray);min-width:110px;">Icebreaker</div><div class="phase-track"><div class="phase-fill" data-w="91" style="width:0%;background:#00E87A"></div></div><div class="phase-score" style="color:#00E87A;font-family:'Syne Mono',monospace;font-size:0.75rem;min-width:30px;text-align:right;">91</div></div>
+      <div class="phase-row"><div class="phase-name" style="font-size:0.8rem;color:var(--gray);min-width:110px;">Découverte</div><div class="phase-track"><div class="phase-fill" data-w="78" style="width:0%;background:#52A875"></div></div><div class="phase-score" style="color:#52A875;font-family:'Syne Mono',monospace;font-size:0.75rem;min-width:30px;text-align:right;">78</div></div>
+      <div class="phase-row"><div class="phase-name" style="font-size:0.8rem;color:var(--gray);min-width:110px;">Argumentation</div><div class="phase-track"><div class="phase-fill" data-w="65" style="width:0%;background:#F0A500"></div></div><div class="phase-score" style="color:#F0A500;font-family:'Syne Mono',monospace;font-size:0.75rem;min-width:30px;text-align:right;">65</div></div>
+      <div class="phase-row"><div class="phase-name" style="font-size:0.8rem;color:var(--gray);min-width:110px;">Objections</div><div class="phase-track"><div class="phase-fill" data-w="55" style="width:0%;background:#F0A500"></div></div><div class="phase-score" style="color:#F0A500;font-family:'Syne Mono',monospace;font-size:0.75rem;min-width:30px;text-align:right;">55</div></div>
+      <div class="phase-row"><div class="phase-name" style="font-size:0.8rem;color:var(--gray);min-width:110px;">Closing</div><div class="phase-track"><div class="phase-fill" data-w="28" style="width:0%;background:#FF4444"></div></div><div class="phase-score" style="color:#FF4444;font-family:'Syne Mono',monospace;font-size:0.75rem;min-width:30px;text-align:right;">28</div></div>
+      <div style="margin-top:1rem;padding:0.75rem;background:rgba(255,68,68,0.08);border:1px solid rgba(255,68,68,0.15);border-radius:4px;font-size:0.78rem;color:#FF8888;line-height:1.5;">⚠ Votre closing est systématiquement faible depuis 3 semaines. C'est là que vous perdez vos deals.</div>
+    </div>
+  </div>
+
+  <!-- Feature 4 — Le coaching, full width impact -->
+  <div style="background:var(--green-dim);border:1px solid rgba(0,232,122,0.2);border-radius:8px;overflow:hidden;margin-bottom:1.5rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+      <div style="padding:2.5rem;border-right:1px solid rgba(0,232,122,0.1);">
+        <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #4 · La vraie différence</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.5rem;letter-spacing:-0.03em;margin:0 0 1rem;line-height:1.2;color:var(--white);">Un coach commercial dans votre poche. Il était là. Il a tout entendu.</h3>
+        <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;">Pas des conseils génériques. Des feedbacks ancrés dans ce que vous avez réellement dit et fait pendant ce RDV précis. Ce qui a bien fonctionné — avec le moment exact où ça a marché. Ce qui a planté — avec l'explication de pourquoi. Ce que vous auriez dû dire — mot pour mot.</p>
+        <p style="font-size:0.9rem;color:var(--gray);line-height:1.7;margin-bottom:1.5rem;">Et contrairement à un vrai DC, il ne se lasse pas. Il analyse votre 500e entretien avec la même précision que votre premier.</p>
+        <div style="padding:0.875rem 1rem;background:rgba(0,232,122,0.08);border-left:3px solid var(--green);border-radius:0 4px 4px 0;font-size:0.8rem;color:var(--green);line-height:1.5;">→ +28% de win rate dans les équipes avec coaching structuré (Calldrip Research)</div>
+      </div>
+      <div style="padding:2.5rem;">
+        <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid rgba(0,232,122,0.15);">Coaching post-entretien · 3 points · Il y a 8 min</div>
+        <div style="padding:0.875rem 0;border-bottom:1px solid rgba(0,232,122,0.1);font-size:0.875rem;color:var(--white);line-height:1.6;"><span style="color:var(--green);">✓ </span>Budget et décideur qualifiés dès la 3e minute — excellente entrée en découverte. Continuez comme ça.</div>
+        <div style="padding:0.875rem 0;border-bottom:1px solid rgba(0,232,122,0.1);font-size:0.875rem;color:var(--white);line-height:1.6;"><span style="color:var(--orange);">⚡ </span>Vous avez proposé le prix avant de valider l'urgence. Le client n'était pas encore prêt à entendre un chiffre.</div>
+        <div style="padding:0.875rem 0;border-bottom:1px solid rgba(0,232,122,0.1);font-size:0.875rem;color:var(--white);line-height:1.6;"><span style="color:var(--orange);">⚡ </span>"C'est trop cher" a été dit 2 fois. Vous ne l'avez pas creusé. Demandez toujours : <em style="color:var(--gray);">"Trop cher par rapport à quoi exactement ?"</em></div>
+        <div style="margin-top:1rem;padding:1rem;background:rgba(0,232,122,0.08);border-left:2px solid var(--green);border-radius:0 4px 4px 0;font-style:italic;color:var(--green);font-size:0.875rem;line-height:1.65;">"Qu'est-ce qu'il vous faudrait voir pour décider cette semaine ?" — Posez cette question avant de donner votre prix.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features bonus — grille compacte -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:0.5rem;">
+
+    <div style="background:rgba(242,240,232,0.03);border:1px solid var(--rule);border-radius:6px;padding:1.5rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #5</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;">Vous progressez. Preuves à l'appui.</div>
+      <p style="font-size:0.8rem;color:var(--gray);line-height:1.6;">Methodr suit votre courbe sur tous vos entretiens. Détecte vos patterns récurrents. Génère un objectif de progression hebdomadaire. Vous ne devinez plus — vous mesurez.</p>
+    </div>
+
+    <div style="background:rgba(242,240,232,0.03);border:1px solid var(--rule);border-radius:6px;padding:1.5rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #6</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;">100% RGPD. Données hébergées en France.</div>
+      <p style="font-size:0.8rem;color:var(--gray);line-height:1.6;">Mistral AI — modèle souverain français. Vos entretiens clients ne partent pas chez un acteur américain. L'audio est supprimé après traitement. Conformité totale.</p>
+    </div>
+
+    <div style="background:rgba(242,240,232,0.03);border:1px solid var(--rule);border-radius:6px;padding:1.5rem;">
+      <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;">Avantage #7</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem;">Partagez en 1 tap. Impressionnez votre client.</div>
+      <p style="font-size:0.8rem;color:var(--gray);line-height:1.6;">Envoyez le compte rendu au client dans la foulée du RDV. Professionnel, structuré, précis. Dans 99% des cas, vos concurrents ne font pas ça. C'est un différenciateur immédiat.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION BÊTA UNIQUE -->
+<section id="essai" style="padding:7rem 2rem;background:var(--black);border-top:1px solid rgba(0,232,122,0.12);position:relative;overflow:hidden;">
+
+  <!-- Fond halo vert subtil -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%, rgba(0,232,122,0.05) 0%, transparent 65%);pointer-events:none;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative;">
+
+    <!-- Header section -->
+    <div style="text-align:center;margin-bottom:5rem;">
+      <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,232,122,0.1);border:1px solid rgba(0,232,122,0.25);border-radius:100px;padding:0.4rem 1.1rem;font-family:'Syne Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;color:var(--green);text-transform:uppercase;margin-bottom:1.75rem;">
+        <span style="width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite;"></span>
+        Bêta ouverte — places limitées
+      </div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:-0.04em;line-height:1.05;color:var(--white);margin-bottom:1.25rem;">
+        On cherche 10 commerciaux terrain<br>pour construire Methodr <em style="color:var(--green);font-style:normal;">avec nous.</em>
+      </h2>
+      <p style="font-size:1.1rem;color:var(--gray);font-weight:300;max-width:580px;margin:0 auto;line-height:1.7;">Pas un beta-test classique où on vous envoie un lien et on disparaît. Un vrai programme : vous testez, vous nous donnez votre avis, on construit ce dont vous avez réellement besoin.</p>
+    </div>
+
+    <!-- Grille 2 colonnes : ce qu'on offre + ce qu'on demande -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:4rem;">
+
+      <!-- Ce qu'on offre -->
+      <div style="background:var(--green-dim);border:1px solid rgba(0,232,122,0.2);border-radius:10px;padding:2.5rem;">
+        <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(0,232,122,0.15);">Ce qu'on vous offre</div>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--black);font-weight:800;font-size:0.75rem;">✓</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">3 mois d'accès complet — offerts</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">Toutes les features : enregistrement, transcription, scoring, coaching IA. Zéro restriction. Zéro carte bancaire.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--black);font-weight:800;font-size:0.75rem;">✓</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">Onboarding personnalisé par l'équipe</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">On configure votre plan de vente avec vous. On s'assure que le produit colle à votre réalité terrain — pas à une fiction.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--black);font-weight:800;font-size:0.75rem;">✓</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">Accès fondateur à vie à -50%</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">Les 10 premiers bêta-testeurs actifs bénéficient d'un tarif fondateur garanti à vie. Avant que le prix public soit annoncé.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--black);font-weight:800;font-size:0.75rem;">✓</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">Votre influence sur le produit</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">Vos retours shapent directement la roadmap. Ce que vous demandez en semaine 2, on l'intègre en semaine 4.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ce qu'on demande -->
+      <div style="background:rgba(242,240,232,0.03);border:1px solid var(--rule);border-radius:10px;padding:2.5rem;">
+        <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--gray);text-transform:uppercase;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--rule);">Ce qu'on vous demande</div>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--gray-dim);border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--gray);font-size:0.75rem;">→</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">Minimum 3 entretiens enregistrés/semaine</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">Vous faites déjà des RDV clients. On vous demande juste d'appuyer sur REC avant d'entrer.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--gray-dim);border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--gray);font-size:0.75rem;">→</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">Un call de feedback de 30 min/mois</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">Ce qui marche, ce qui ne marche pas, ce qu'il manque. 30 minutes par mois, pas plus.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:28px;height:28px;background:var(--gray-dim);border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="color:var(--gray);font-size:0.75rem;">→</span>
+            </div>
+            <div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.25rem;">Être un commercial terrain physique</div>
+              <div style="font-size:0.82rem;color:var(--gray);line-height:1.5;">Cuisiniste, agenceur, agent commercial indépendant, mandataire immobilier — vous vendez en face à face. C'est tout ce qu'il faut.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compteur places -->
+        <div style="margin-top:2rem;padding:1.25rem;background:rgba(240,165,0,0.08);border:1px solid rgba(240,165,0,0.2);border-radius:6px;display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-family:'Syne Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--orange);text-transform:uppercase;margin-bottom:0.25rem;">Places disponibles</div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;color:var(--white);">7 places restantes sur 10</div>
+          </div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.5rem;color:var(--orange);letter-spacing:-0.04em;">7/10</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire -->
+    <div style="max-width:680px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.75rem;letter-spacing:-0.03em;color:var(--white);margin-bottom:0.75rem;">Je candidate pour la bêta</h3>
+        <p style="font-size:0.9rem;color:var(--gray);">On vous répond sous 24h. L'onboarding dure 20 minutes.</p>
+      </div>
+
+      <form class="signup-form" onsubmit="handleSubmit(event)" style="gap:1rem;">
+        <div class="form-row">
+          <input type="text" class="form-field" placeholder="Prénom *" required>
+          <input type="text" class="form-field" placeholder="Nom *" required>
+        </div>
+        <input type="email" class="form-field" placeholder="Email professionnel *" required>
+        <input type="tel" class="form-field" placeholder="Téléphone (optionnel — pour vous rappeler plus vite)">
+        <select class="form-field" required>
+          <option value="" disabled selected>Votre activité terrain *</option>
+          <option>Cuisiniste indépendant</option>
+          <option>Agenceur / aménagement intérieur</option>
+          <option>Agent commercial indépendant (multi-cartes)</option>
+          <option>Mandataire immobilier</option>
+          <option>Consultant / formateur terrain</option>
+          <option>Autre commercial terrain physique</option>
+        </select>
+        <select class="form-field" required>
+          <option value="" disabled selected>Nombre de RDV clients par semaine *</option>
+          <option>1 à 3 RDV / semaine</option>
+          <option>4 à 7 RDV / semaine</option>
+          <option>8 à 15 RDV / semaine</option>
+          <option>Plus de 15 RDV / semaine</option>
+        </select>
+
+        <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:0.875rem;background:#CC0000;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;padding:1.1rem 2rem;border-radius:50px;border:none;cursor:pointer;width:100%;transition:all 0.2s;animation:rec-pulse 2s ease-in-out infinite;letter-spacing:0.01em;">
+          <span style="width:10px;height:10px;background:#fff;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+          REC — Je rejoins la bêta gratuitement
+        </button>
+
+        <div style="text-align:center;font-size:0.72rem;color:rgba(242,240,232,0.25);margin-top:0.5rem;line-height:1.6;">
+          Sans carte bancaire · 3 mois offerts · Accès complet · Onboarding personnalisé<br>
+          En soumettant ce formulaire, vous acceptez d'être contacté par l'équipe Methodr.
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Methodr<span>.</span></div>
+  <div>© 2026 Methodr — Directeur commercial IA terrain</div>
+  <div>methodr.io · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5b8b4bba095b8b0a1bdbab1a7fbbcba">[email&#160;protected]</a></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Animate score bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.width = entry.target.dataset.w + '%';
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.phase-fill[data-w]').forEach(el => observer.observe(el));
+
+// Form submission
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Demande envo
