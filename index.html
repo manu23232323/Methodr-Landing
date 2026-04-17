@@ -616,6 +616,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   <input name="prenom"><input name="nom"><input name="email" type="email"><input name="organisation">
   <select name="personnes"><option></option></select>
   <textarea name="message"></textarea>
+  <input name="module">
 </form>
 
 <!-- NAV -->
@@ -1173,7 +1174,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
           Financement : OPCO EP · AGEFICE · FIFPL
         </div>
         <p class="mod-obj">Construire un brief préparatoire complet avant chaque RDV vendeur — DVF, historique annonces, signal prix, angle d'accroche. Sans aucun outil logiciel requis.</p>
-        <a class="btn btn-outline" href="/assets/Methodr_Formation_Module_R0_v1.pdf" download>Télécharger le programme (PDF)</a>
+        <button type="button" class="btn btn-outline" data-open-pdf-modal data-module="R0" data-module-label="Module R0 · Brief marché &amp; préparation">Recevoir le programme par email</button>
       </article>
 
       <article class="mod">
@@ -1184,7 +1185,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
           Financement : OPCO EP · AGEFICE · FIFPL
         </div>
         <p class="mod-obj">Conduire un R1 en 5 phases structurées. Découverte projet vendeur, qualification du bien, signaux décisionnels, clôture avec date R2 verrouillée. Zéro prix, zéro argumentation au R1.</p>
-        <a class="btn btn-outline" href="/assets/Methodr_Formation_Module_R1_v1.pdf" download>Télécharger le programme (PDF)</a>
+        <button type="button" class="btn btn-outline" data-open-pdf-modal data-module="R1" data-module-label="Module R1 · Premier rendez-vous vendeur — Découverte pure">Recevoir le programme par email</button>
       </article>
 
       <article class="mod">
@@ -1195,7 +1196,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
           Financement : OPCO EP · AGEFICE · FIFPL
         </div>
         <p class="mod-obj">Restituer le R1, présenter l'estimation documentée, argumenter le mandat exclusif, traiter l'objection légitimité, conduire le closing. KPI : mandat signé ou R3 daté.</p>
-        <a class="btn btn-outline" href="/assets/Methodr_Formation_Module_R2_v1.pdf" download>Télécharger le programme (PDF)</a>
+        <button type="button" class="btn btn-outline" data-open-pdf-modal data-module="R2" data-module-label="Module R2 · Deuxième rendez-vous vendeur — Closing &amp; mandat exclusif">Recevoir le programme par email</button>
       </article>
     </div>
 
@@ -1303,6 +1304,52 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   </div>
 </div>
 
+<!-- MODAL PDF FORMATION -->
+<div class="modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
+  <div class="modal-inner">
+    <button class="modal-close" id="pdfModalClose" aria-label="Fermer">✕</button>
+
+    <div id="pdfModalMain">
+      <h3 id="pdf-modal-title">Recevoir le programme par email</h3>
+      <p class="modal-sub" id="pdfModalSub">Indiquez-nous où vous joindre. Vous recevez le programme détaillé du module dans les minutes qui suivent.</p>
+
+      <form id="pdfForm" name="contact-formation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact-formation">
+        <input type="hidden" name="module" id="pdfModuleField" value="">
+        <p class="hide-sr"><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="pdf-prenom">Prénom</label>
+            <input id="pdf-prenom" type="text" name="prenom" required>
+          </div>
+          <div class="form-field">
+            <label for="pdf-nom">Nom</label>
+            <input id="pdf-nom" type="text" name="nom" required>
+          </div>
+          <div class="form-field full">
+            <label for="pdf-email">Email professionnel</label>
+            <input id="pdf-email" type="email" name="email" required>
+          </div>
+          <div class="form-field full">
+            <label for="pdf-org">Réseau ou agence</label>
+            <input id="pdf-org" type="text" name="organisation" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Recevoir le programme</button>
+        <p class="modal-note">Données hébergées en France · RGPD compliant</p>
+      </form>
+    </div>
+
+    <div id="pdfModalSuccess" style="display:none;text-align:center;padding:20px 0">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--g2)" stroke-width="1.5" style="margin:0 auto 16px;display:block"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+      <h3 style="margin-bottom:10px">Merci, c'est noté.</h3>
+      <p style="font-size:14px;color:var(--ink3);line-height:1.6;max-width:380px;margin:0 auto 24px">Le programme <strong id="pdfSuccessModule" style="color:var(--ink)">du module</strong> arrive dans votre boîte mail dans les minutes qui suivent. Vérifiez vos spams si besoin.</p>
+      <button type="button" class="btn btn-outline" id="pdfModalCloseSuccess">Fermer</button>
+    </div>
+
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
@@ -1367,7 +1414,73 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   document.querySelectorAll('[data-open-modal]').forEach(function(el){ el.addEventListener('click', openModal); });
   closeBtn && closeBtn.addEventListener('click', closeModal);
   modal && modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+  // Modal PDF (recevoir programme par email)
+  var pdfModal = document.getElementById('pdfModal');
+  var pdfModalClose = document.getElementById('pdfModalClose');
+  var pdfModalCloseSuccess = document.getElementById('pdfModalCloseSuccess');
+  var pdfForm = document.getElementById('pdfForm');
+  var pdfModalMain = document.getElementById('pdfModalMain');
+  var pdfModalSuccess = document.getElementById('pdfModalSuccess');
+  var pdfModuleField = document.getElementById('pdfModuleField');
+  var pdfModalSub = document.getElementById('pdfModalSub');
+  var pdfSuccessModule = document.getElementById('pdfSuccessModule');
+
+  function openPdfModal(e){
+    e && e.preventDefault();
+    var btn = e && e.currentTarget;
+    var mod = btn ? btn.getAttribute('data-module') : '';
+    var label = btn ? btn.getAttribute('data-module-label') : '';
+    pdfModuleField.value = label || mod;
+    if(label){
+      pdfModalSub.innerHTML = 'Indiquez-nous où vous joindre. Vous recevez le programme détaillé du <strong style="color:var(--ink)">' + label + '</strong> dans les minutes qui suivent.';
+      pdfSuccessModule.textContent = label;
+    }
+    // reset affichage
+    pdfModalMain.style.display = 'block';
+    pdfModalSuccess.style.display = 'none';
+    pdfForm.reset();
+    pdfModuleField.value = label || mod;
+    pdfModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePdfModal(){
+    pdfModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-open-pdf-modal]').forEach(function(el){ el.addEventListener('click', openPdfModal); });
+  pdfModalClose && pdfModalClose.addEventListener('click', closePdfModal);
+  pdfModalCloseSuccess && pdfModalCloseSuccess.addEventListener('click', closePdfModal);
+  pdfModal && pdfModal.addEventListener('click', function(e){ if(e.target===pdfModal) closePdfModal(); });
+
+  // Soumission AJAX — garde l'utilisateur sur la page et affiche un succès inline
+  function encodeFormData(fd){
+    var pairs = [];
+    fd.forEach(function(v,k){ pairs.push(encodeURIComponent(k)+'='+encodeURIComponent(v)); });
+    return pairs.join('&');
+  }
+  pdfForm && pdfForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var fd = new FormData(pdfForm);
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: encodeFormData(fd)
+    }).then(function(r){
+      if(r.ok){
+        pdfModalMain.style.display = 'none';
+        pdfModalSuccess.style.display = 'block';
+      } else {
+        alert('Une erreur est survenue. Réessayez ou écrivez-nous directement.');
+      }
+    }).catch(function(){
+      alert('Une erreur réseau est survenue. Réessayez dans un instant.');
+    });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ closeModal(); closePdfModal(); }
+  });
 
   // Reveal on scroll
   if('IntersectionObserver' in window){
