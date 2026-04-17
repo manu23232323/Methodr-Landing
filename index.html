@@ -603,28 +603,33 @@ a.btn-nav,
 .reveal.in{opacity:1;transform:translateY(0)}
 
 /* ——— CURSEUR TRACKER (desktop only) ——— */
-.cursor-dot,
-.cursor-ring{
+.cursor-orb,
+.cursor-trail{
   position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
   transform:translate(-50%,-50%);
-  transition:opacity .2s;
-  mix-blend-mode:difference;
+  border-radius:50%;
   opacity:0;
 }
-.cursor-dot{
-  width:6px;height:6px;border-radius:50%;background:var(--grn);
-  transition:transform .05s ease-out,opacity .2s;
+.cursor-orb{
+  width:18px;height:18px;
+  background:radial-gradient(circle at 50% 50%, rgba(0,232,122,.9) 0%, rgba(0,232,122,.6) 55%, rgba(0,232,122,0) 100%);
+  border:1px solid rgba(0,232,122,.9);
+  box-shadow:0 0 12px rgba(0,232,122,.55), 0 0 4px rgba(0,232,122,.9);
+  transition:width .2s ease-out, height .2s ease-out, opacity .25s;
 }
-.cursor-ring{
-  width:32px;height:32px;border-radius:50%;
-  border:1px solid var(--grn);
-  transition:transform .25s ease-out,opacity .2s,width .2s,height .2s;
+.cursor-trail{
+  width:14px;height:14px;
+  background:radial-gradient(circle at 50% 50%, rgba(0,232,122,.55) 0%, rgba(0,232,122,.18) 60%, rgba(0,232,122,0) 100%);
+  transition:opacity .22s ease-out, transform .22s ease-out;
 }
-body.cursor-ready .cursor-dot,
-body.cursor-ready .cursor-ring{opacity:1}
-.cursor-ring.hover{width:48px;height:48px;border-color:var(--grn);background:rgba(0,232,122,.08)}
+body.cursor-ready .cursor-orb{opacity:1}
+.cursor-orb.hover{
+  width:30px;height:30px;
+  background:radial-gradient(circle at 50% 50%, rgba(0,232,122,.95) 0%, rgba(0,232,122,.55) 50%, rgba(0,232,122,0) 100%);
+  box-shadow:0 0 18px rgba(0,232,122,.7), 0 0 6px rgba(0,232,122,1);
+}
 @media (hover:none),(pointer:coarse){
-  .cursor-dot,.cursor-ring{display:none}
+  .cursor-orb,.cursor-trail{display:none}
 }
 
 /* ——— utilities ——— */
@@ -1417,8 +1422,7 @@ body.cursor-ready .cursor-ring{opacity:1}
 </footer>
 
 <!-- Curseur tracker desktop -->
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-orb" aria-hidden="true"></div>
 
 <script>
 (function(){
@@ -1514,37 +1518,71 @@ body.cursor-ready .cursor-ring{opacity:1}
     if(e.key==='Escape'){ closeModal(); closePdfModal(); }
   });
 
-  // Curseur tracker vert (desktop uniquement)
+  // Curseur tracker vert avec trail (desktop uniquement)
   var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
   if(!isTouch){
-    var dot = document.querySelector('.cursor-dot');
-    var ring = document.querySelector('.cursor-ring');
-    var ringX=0, ringY=0, mouseX=0, mouseY=0;
+    var orb = document.querySelector('.cursor-orb');
+    var mouseX = -100, mouseY = -100;
+    var lastTrailX = -100, lastTrailY = -100;
+
+    // Pool de trails pré-créés pour éviter les reflow coûteux
+    var POOL_SIZE = 14;
+    var pool = [];
+    for(var i = 0; i < POOL_SIZE; i++){
+      var t = document.createElement('div');
+      t.className = 'cursor-trail';
+      document.body.appendChild(t);
+      pool.push({el: t, alive: false});
+    }
+    var poolIdx = 0;
+
+    function spawnTrail(x, y){
+      var slot = pool[poolIdx];
+      poolIdx = (poolIdx + 1) % POOL_SIZE;
+      var el = slot.el;
+      // reset
+      el.style.transition = 'none';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.style.opacity = '0.7';
+      el.style.transform = 'translate(-50%,-50%) scale(1)';
+      // force reflow pour relancer la transition
+      void el.offsetWidth;
+      el.style.transition = 'opacity .5s ease-out, transform .5s ease-out';
+      el.style.opacity = '0';
+      el.style.transform = 'translate(-50%,-50%) scale(0.3)';
+    }
 
     document.addEventListener('mousemove', function(e){
-      mouseX = e.clientX; mouseY = e.clientY;
-      if(dot){ dot.style.left = mouseX+'px'; dot.style.top = mouseY+'px'; }
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if(orb){
+        orb.style.left = mouseX + 'px';
+        orb.style.top = mouseY + 'px';
+      }
       if(!document.body.classList.contains('cursor-ready')){
         document.body.classList.add('cursor-ready');
       }
-    }, {passive:true});
 
-    // Ring suit avec inertie
-    function animate(){
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      if(ring){ ring.style.left = ringX+'px'; ring.style.top = ringY+'px'; }
-      requestAnimationFrame(animate);
-    }
-    animate();
+      // Spawn trail uniquement si la souris a bougé significativement
+      // Plus elle bouge vite, plus il y aura de trails (=> effet étoile filante)
+      var dx = mouseX - lastTrailX;
+      var dy = mouseY - lastTrailY;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist > 8){ // seuil : 8px de déplacement
+        spawnTrail(mouseX, mouseY);
+        lastTrailX = mouseX;
+        lastTrailY = mouseY;
+      }
+    }, {passive: true});
 
-    // Effet "grow" au survol des éléments cliquables
+    // Hover sur éléments interactifs -> orb grandit
     document.querySelectorAll('a,button,[data-open-modal],[data-open-pdf-modal],input,select,textarea').forEach(function(el){
-      el.addEventListener('mouseenter', function(){ ring && ring.classList.add('hover'); });
-      el.addEventListener('mouseleave', function(){ ring && ring.classList.remove('hover'); });
+      el.addEventListener('mouseenter', function(){ orb && orb.classList.add('hover'); });
+      el.addEventListener('mouseleave', function(){ orb && orb.classList.remove('hover'); });
     });
 
-    // Masquer quand le curseur quitte la fenêtre
+    // Hide quand la souris quitte la fenêtre
     document.addEventListener('mouseleave', function(){ document.body.classList.remove('cursor-ready'); });
     document.addEventListener('mouseenter', function(){ document.body.classList.add('cursor-ready'); });
   }
