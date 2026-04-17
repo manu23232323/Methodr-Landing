@@ -54,8 +54,8 @@ section{padding:80px 0;position:relative}
 }
 .eyebrow.muted{color:var(--ink4)}
 h1,h2,h3,h4{font-family:var(--sans);font-weight:800;line-height:1.1;letter-spacing:-.01em}
-h1{font-size:clamp(40px,6vw,72px)}
-h2{font-size:clamp(28px,3.4vw,42px);font-weight:700}
+h1{font-size:clamp(32px,4.4vw,52px);line-height:1.12;letter-spacing:-.015em}
+h2{font-size:clamp(26px,3vw,38px);font-weight:700}
 h3{font-size:20px;font-weight:700}
 .serif-it{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
 .mono{font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;font-size:11px}
@@ -122,12 +122,12 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 .btn-large{padding:18px 36px;font-size:15px}
 
 /* ——— S1 HERO ——— */
-.hero{padding:100px 0 120px;background:var(--ink);color:#fff;position:relative;overflow:hidden}
-.hero h1{margin:14px 0 28px;color:#fff}
+.hero{padding:90px 0 100px;background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.hero h1{margin:14px 0 24px;color:#fff;max-width:860px}
 .hero h1 .line-it{display:block;font-family:var(--serif);font-style:italic;font-weight:400;color:#fff}
 .hero h1 .line-sans{display:block;font-family:var(--sans);font-weight:800}
-.hero .sub{max-width:600px;font-size:16px;color:#a8a89e;line-height:1.6;margin-bottom:36px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:72px}
+.hero .sub{max-width:580px;font-size:15px;color:#a8a89e;line-height:1.65;margin-bottom:32px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 
 /* mockups */
 .mockups{
@@ -184,8 +184,11 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   background:#fff;border:1px solid var(--rule);border-radius:4px;
   padding:40px 44px;display:grid;grid-template-columns:120px 1fr;gap:36px;
 }
-.seq-num{font-family:var(--mono);font-size:13px;color:var(--grn);letter-spacing:.14em;text-transform:uppercase;border-top:2px solid var(--ink);padding-top:12px;max-width:110px}
-.seq-num strong{display:block;font-family:var(--sans);font-weight:800;font-size:42px;color:var(--ink);letter-spacing:-.02em;margin-top:6px;line-height:1}
+.seq-num{
+  font-family:var(--mono);font-size:13px;color:var(--grn);letter-spacing:.14em;
+  text-transform:uppercase;border-top:2px solid var(--ink);padding-top:12px;
+  max-width:140px;line-height:1.4;
+}
 .seq-body h3{font-size:22px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
 .seq-body .lead{font-size:15px;color:var(--ink2);margin-bottom:20px;line-height:1.6}
 .seq-body .lead-alt{font-size:14px;color:var(--ink3);margin-bottom:14px;line-height:1.6}
@@ -214,35 +217,120 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 
 @media(max-width:900px){
   .seq-item{grid-template-columns:1fr;padding:28px 24px;gap:20px}
-  .seq-num{max-width:none;border-top:none;padding-top:0}
-  .seq-num strong{font-size:32px}
+  .seq-num{max-width:none;border-top:none;padding-top:0;padding-bottom:6px;border-bottom:1px solid var(--rule)}
 }
 
-/* ——— S4 DEMO ——— */
-.demo h2{color:#fff;margin-bottom:8px;max-width:620px}
-.demo .lead{color:var(--ink4);margin-bottom:36px}
-.player{
-  aspect-ratio:16/9;background:#1a1a18;border:1px solid rgba(255,255,255,.08);
-  border-radius:6px;display:flex;align-items:center;justify-content:center;
-  position:relative;max-width:920px;
+/* ——— S4 DASHBOARD (ex-démo) ——— */
+.demo h2{color:#fff;margin-bottom:8px;max-width:720px}
+.demo .demo-lead{color:#a8a89e;margin-bottom:44px;max-width:720px;font-size:15px;line-height:1.6}
+
+.dash{
+  background:#15151300;
+  border:1px solid rgba(255,255,255,.08);border-radius:6px;
+  overflow:hidden;
 }
-.play-btn{
-  width:72px;height:72px;border-radius:50%;
-  background:rgba(0,232,122,.1);border:1px solid var(--grn);
-  display:flex;align-items:center;justify-content:center;
+.dash-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
 }
-.play-btn svg{margin-left:4px}
-.player-label{
-  position:absolute;bottom:18px;left:22px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--grn);
+.dash-head-left{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#a8a89e;text-transform:uppercase}
+.dash-head-left .dot{width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 0 2px rgba(0,232,122,.15)}
+.dash-head-right{display:flex;gap:6px}
+.dash-head-right span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.12)}
+
+.dash-body{
+  display:grid;grid-template-columns:200px 1fr;gap:0;
+  min-height:420px;
 }
-.steps{
-  display:flex;gap:18px;align-items:center;margin-top:28px;flex-wrap:wrap;
+.dash-side{
+  border-right:1px solid rgba(255,255,255,.08);padding:22px 18px;
+  display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.01);
+}
+.dash-side-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--ink4);
+  text-transform:uppercase;margin:10px 0 6px;
+}
+.dash-side-label:first-child{margin-top:0}
+.dash-side-item{
+  display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:3px;
+  font-size:12px;color:#c8c8c0;cursor:default;
+}
+.dash-side-item.active{background:rgba(0,232,122,.08);color:#fff}
+.dash-side-item.active::before{content:"";width:3px;height:14px;background:var(--grn);border-radius:2px;margin-right:-3px}
+.dash-side-item .ico{width:14px;height:14px;opacity:.6}
+.dash-side-item.active .ico{opacity:1;color:var(--grn)}
+
+.dash-main{padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+.dash-top{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dash-kpi{
+  border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:14px 16px;
+  background:rgba(255,255,255,.015);
+}
+.dash-kpi-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:6px}
+.dash-kpi-val{font-family:var(--sans);font-weight:800;font-size:22px;color:#fff;line-height:1;letter-spacing:-.01em}
+.dash-kpi-delta{font-family:var(--mono);font-size:10px;letter-spacing:.06em;margin-top:6px;color:var(--grn)}
+.dash-kpi-delta.down{color:#ff8878}
+
+.dash-cols{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}
+.dash-card{
+  border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:18px;
+  background:rgba(255,255,255,.015);display:flex;flex-direction:column;gap:12px;
+}
+.dash-card-title{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  color:#c8c8c0;text-transform:uppercase;
+}
+.dash-card-title .live{
+  display:inline-flex;align-items:center;gap:6px;color:var(--grn);font-size:9px;
+}
+.dash-card-title .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--grn);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
+
+.dash-row{
+  display:grid;grid-template-columns:90px 1fr 60px 80px;gap:10px;align-items:center;
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  font-size:12px;color:#c8c8c0;
+}
+.dash-row:last-child{border-bottom:none}
+.dash-row .name{color:#fff;font-weight:700;font-size:12px}
+.dash-row .phase-bar{position:relative;height:6px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.dash-row .phase-bar span{display:block;height:100%;background:var(--grn);border-radius:2px}
+.dash-row .phase-bar span.warn{background:#f5c878}
+.dash-row .phase-bar span.alert{background:#ff8878}
+.dash-row .score{font-family:var(--mono);font-size:11px;color:#fff;text-align:right}
+.dash-row .score.warn{color:#f5c878}
+.dash-row .score.alert{color:#ff8878}
+.dash-row .status{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-align:right;color:var(--ink4);text-transform:uppercase}
+
+.dash-alert{
+  border-left:2px solid var(--grn);padding:10px 14px;background:rgba(0,232,122,.05);
+  border-radius:0 3px 3px 0;font-size:12px;color:#c8c8c0;line-height:1.55;
+}
+.dash-alert.alert{border-color:#ff8878;background:rgba(255,136,120,.06)}
+.dash-alert b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:#fff;text-transform:uppercase;margin-bottom:4px}
+
+.dash-mini-bars{display:flex;align-items:flex-end;gap:6px;height:80px;padding:10px 0}
+.dash-mini-bars i{flex:1;background:linear-gradient(180deg,var(--grn),rgba(0,232,122,.25));border-radius:2px 2px 0 0;display:block}
+.dash-mini-legend{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--ink4);text-transform:uppercase}
+
+.dash-caption{
+  display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;
   font-family:var(--mono);font-size:11px;letter-spacing:.12em;
   text-transform:uppercase;color:#a8a89e;
 }
-.steps .arrow{color:var(--grn)}
+.dash-caption .arrow{color:var(--grn)}
+
+@media(max-width:900px){
+  .dash-body{grid-template-columns:1fr}
+  .dash-side{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);flex-direction:row;overflow-x:auto;padding:14px}
+  .dash-side-label{display:none}
+  .dash-top{grid-template-columns:repeat(2,1fr)}
+  .dash-cols{grid-template-columns:1fr}
+  .dash-row{grid-template-columns:80px 1fr 50px}
+  .dash-row .status{display:none}
+}
 
 /* ——— S5 POUR QUI ——— */
 .qui-head{max-width:760px;margin-bottom:56px}
@@ -305,13 +393,31 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   display:flex;flex-direction:column;gap:18px;
 }
 .quote blockquote{
-  font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.4;
-  color:#fff;font-weight:400;letter-spacing:-.01em;
+  font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.45;
+  color:#fff;font-weight:400;letter-spacing:-.005em;
 }
 .quote cite{
   font-family:var(--mono);font-size:10px;letter-spacing:.12em;
-  color:var(--grn);text-transform:uppercase;font-style:normal;line-height:1.6;
+  color:#c8c8c0;text-transform:uppercase;font-style:normal;line-height:1.6;
 }
+.quote cite b{color:#fff;font-weight:700;display:block;margin-bottom:3px}
+
+.pastille{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  padding:6px 10px;border-radius:2px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;
+}
+.pastille::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+}
+.pst-g{background:rgba(0,232,122,.1);color:var(--grn)}
+.pst-g::before{background:var(--grn)}
+.pst-b{background:rgba(216,232,248,.1);color:#9ec5f2}
+.pst-b::before{background:#9ec5f2}
+.pst-a{background:rgba(253,240,208,.1);color:#f5c878}
+.pst-a::before{background:#f5c878}
+
 @media(max-width:900px){.testi{grid-template-columns:1fr}}
 
 /* ——— S8 CTA FINAL ——— */
@@ -338,7 +444,8 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   padding:22px 24px;
 }
 .founder-name{font-family:var(--sans);font-size:16px;font-weight:700;margin-bottom:4px}
-.founder-role{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink4);text-transform:uppercase}
+.founder-role{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink4);text-transform:uppercase;margin-bottom:10px}
+.founder-bio{font-size:13px;color:var(--ink3);line-height:1.6}
 @media(max-width:768px){.founders{grid-template-columns:1fr}}
 
 /* ——— S3 HOWTO (pédagogique) ——— */
@@ -385,8 +492,24 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 
 /* ——— FORMATION ——— */
 .formation{padding:80px 0;background:var(--paper2)}
-.formation-head{max-width:780px;margin-bottom:40px;border-top:1px solid var(--rule);padding-top:32px}
-.formation-head h2{font-size:24px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.formation-accroche{
+  max-width:820px;margin-bottom:56px;
+  padding:0 0 32px;border-bottom:1px solid var(--rule);
+}
+.formation-accroche .eyebrow{color:var(--g2);margin-bottom:14px}
+.formation-accroche h2{
+  font-family:var(--sans);font-weight:800;font-size:clamp(24px,2.8vw,34px);
+  letter-spacing:-.015em;line-height:1.2;margin-bottom:16px;
+}
+.formation-accroche h2 em{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  color:var(--g);letter-spacing:-.01em;
+}
+.formation-accroche p{font-size:15px;color:var(--ink2);line-height:1.65;max-width:720px}
+.formation-accroche p + p{margin-top:12px}
+
+.formation-head{max-width:780px;margin-bottom:32px}
+.formation-head h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;font-family:var(--sans)}
 .formation-head p{font-size:13px;color:var(--ink3);line-height:1.6}
 .mods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
 .mod{
@@ -560,7 +683,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
     <div class="howto-head">
       <div class="eyebrow muted">Comment ça marche</div>
       <h2 id="s3how">Ce que Methodr fait pour vous, concrètement.</h2>
-      <p>Vous gardez votre manière de vendre. Methodr s'occupe de tout ce qui vient avant et après le rendez-vous — les données, l'enregistrement, la transcription, le scoring, le compte rendu, le coaching. Cinq étapes invisibles qui changent ce que vous faites sur le terrain.</p>
+      <p>Restez focus sur le terrain et la prise de mandat. Methodr s'occupe de tout ce qui vient avant et après le rendez-vous — les données, l'enregistrement, la transcription, le scoring, le compte rendu, le coaching. Cinq étapes invisibles qui changent ce que vous faites sur le terrain.</p>
     </div>
 
     <div class="howto">
@@ -577,32 +700,32 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
         <div class="htstep-num">Étape 02</div>
         <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="2" width="6" height="14" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M8 22h8"/></svg>
         <h3>Capturer l'entretien</h3>
-        <p>Vous enregistrez le rendez-vous en un tap sur votre téléphone, même sans réseau. Vous posez votre téléphone et vous vendez normalement. Methodr se synchronise tout seul dès que vous retrouvez du réseau.</p>
+        <p>Vous enregistrez le rendez-vous en un tap — avec l'enregistreur ou le micro-cravate qui vous va. Vous posez le matériel, vous oubliez tout le reste, et vous vendez normalement. Methodr récupère l'audio dès que vous êtes de retour.</p>
         <div class="htstep-note">Vous restez concentré sur le vendeur</div>
       </div>
 
       <div class="htstep">
         <div class="htstep-num">Étape 03</div>
         <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
-        <h3>Transcrire et comprendre</h3>
-        <p>Methodr transcrit l'entretien et sépare votre voix de celle du vendeur. Chaque moment clé est identifié : motivation réelle, délai, projet aval, objection soulevée, prix demandé. Vous savez exactement ce qui s'est dit — pas ce que vous avez retenu.</p>
-        <div class="htstep-note">Zéro saisie manuelle</div>
+        <h3>Transcrire et reporter</h3>
+        <p>Methodr transcrit l'entretien, sépare votre voix de celle du vendeur et génère un compte rendu structuré. Un résumé prêt à envoyer par mail au vendeur, un autre à votre manager. Plus un back-up complet de l'entretien, recherchable mot par mot. Le reporting ne vous coûte plus une minute.</p>
+        <div class="htstep-note">Reporting vendeur · reporting manager · back-up complet</div>
       </div>
 
       <div class="htstep">
         <div class="htstep-num">Étape 04</div>
         <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20V10M9 20V4M15 20v-7M21 20V7"/></svg>
-        <h3>Scorer chaque phase</h3>
-        <p>L'entretien est scoré phase par phase selon une méthode immobilier — accroche, découverte, bien, signaux décisionnels, closing. Vous savez où vous êtes bon, où vous avez décroché, et si vous avez respecté les règles critiques de la prise de mandat.</p>
-        <div class="htstep-note">Un score objectif · 0 à 100</div>
+        <h3>Scorer sur le plan de vente idéal</h3>
+        <p>Votre entretien est confronté au plan de vente optimal de la prise de mandat exclusive — la méthode qui verrouille vraiment le mandat. Vous savez, phase par phase, où vous êtes dans le standard et où vous avez décroché par rapport au meilleur scénario.</p>
+        <div class="htstep-note">Référentiel mandat exclusif · Score 0 à 100</div>
       </div>
 
       <div class="htstep">
         <div class="htstep-num">Étape 05</div>
         <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
-        <h3>Restituer et coacher</h3>
-        <p>Vous recevez un compte rendu structuré prêt à être glissé dans votre CRM, et 3 à 5 recommandations personnalisées basées sur des moments précis de votre entretien. Pas des conseils génériques — les vôtres, calibrés sur ce que vous avez réellement dit.</p>
-        <div class="htstep-note">Disponible en moins de 10 minutes</div>
+        <h3>Coacher et orienter la suite</h3>
+        <p>Ce qui a fonctionné, ce qui a cassé, vos points forts, vos points faibles. Et surtout : 3 à 5 préconisations stratégiques pour le prochain rendez-vous — quelle objection anticiper, quel levier activer, quelle étape commerciale engager. Du coaching et de la stratégie, pas des conseils génériques.</p>
+        <div class="htstep-note">Debrief · Points forts / faibles · Prochains coups</div>
       </div>
 
     </div>
@@ -615,13 +738,13 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
     <div class="seq-head">
       <div class="eyebrow muted">La méthode</div>
       <h2 id="s3">R0 · R1 · R2 — La séquence complète. Scorée. Coachée.</h2>
-      <p>Methodr est calibré sur la réalité du terrain immobilier. Prise de mandat vendeur, mandataire indépendant, R1 découverte pure, R2 closing et mandat exclusif.</p>
+      <p>Methodr. Calibré pour le terrain.</p>
     </div>
 
     <div class="seq">
       <!-- R0 -->
       <div class="seq-item reveal">
-        <div class="seq-num">R0 · Brief<strong>01</strong></div>
+        <div class="seq-num">R0 · Brief</div>
         <div class="seq-body">
           <h3>Brief automatisé avant le rendez-vous</h3>
           <p class="lead">Saisir l'adresse du bien. En 30 secondes :</p>
@@ -639,7 +762,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 
       <!-- R1 -->
       <div class="seq-item reveal">
-        <div class="seq-num">R1 · Découverte<strong>02</strong></div>
+        <div class="seq-num">R1 · Découverte</div>
         <div class="seq-body">
           <h3>Découverte pure — 5 phases scorées</h3>
           <p class="lead">L'unique objectif : repartir avec une compréhension totale du projet vendeur et une date R2 verrouillée. Zéro prix. Zéro argumentation. Zéro mandat.</p>
@@ -656,7 +779,7 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 
       <!-- R2 -->
       <div class="seq-item reveal">
-        <div class="seq-num">R2 · Closing<strong>03</strong></div>
+        <div class="seq-num">R2 · Closing</div>
         <div class="seq-body">
           <h3>Closing et mandat — 6 phases scorées</h3>
           <p class="lead">Le mandataire restitue le R1, présente l'estimation documentée, argumente le mandat exclusif et tente le closing.</p>
@@ -678,19 +801,141 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   </div>
 </section>
 
-<!-- S4 DEMO -->
+<!-- S5 DASHBOARD -->
 <section class="dark demo" id="demo" aria-labelledby="s4">
   <div class="wrap">
-    <div class="eyebrow">Démo</div>
-    <h2 id="s4">60 secondes. La boucle complète.</h2>
-    <p class="lead mono" style="color:var(--ink4);margin-bottom:36px">Disponible en bêta</p>
-    <div class="player" role="img" aria-label="Placeholder démo vidéo">
-      <button class="play-btn" aria-label="Lire la démo">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#00E87A"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-      <div class="player-label">Démo disponible en bêta</div>
+    <div class="eyebrow">Un aperçu</div>
+    <h2 id="s4">Toute votre équipe terrain. En une vue.</h2>
+    <p class="demo-lead">Le dashboard responsable agrège les entretiens terrain de vos conseillers en temps réel. Score par phase, alertes automatiques, patterns d'échec récurrents — vous voyez ce qui se passe chez le vendeur sans avoir à y être.</p>
+
+    <div class="dash" role="img" aria-label="Aperçu du dashboard responsable Methodr">
+      <div class="dash-head">
+        <div class="dash-head-left">
+          <span class="dot"></span>
+          <span>Methodr · Dashboard Responsable · Réseau IAD Auvergne</span>
+        </div>
+        <div class="dash-head-right"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="dash-body">
+        <!-- Sidebar -->
+        <aside class="dash-side">
+          <div class="dash-side-label">Pilotage</div>
+          <div class="dash-side-item active"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Vue d'ensemble</div>
+          <div class="dash-side-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>Mon équipe</div>
+          <div class="dash-side-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>Progression</div>
+          <div class="dash-side-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 2"/></svg>Entretiens</div>
+          <div class="dash-side-label">Insights</div>
+          <div class="dash-side-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.3 3.5l-7 7a2 2 0 0 0 0 2.8l7.4 7.4a2 2 0 0 0 2.8 0l7-7a2 2 0 0 0 0-2.8l-7.4-7.4a2 2 0 0 0-2.8 0z"/><path d="M7 7h.01"/></svg>Patterns</div>
+          <div class="dash-side-item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2C20 17.5 12 22 12 22z"/></svg>Coaching ciblé</div>
+        </aside>
+
+        <!-- Main -->
+        <div class="dash-main">
+
+          <!-- KPIs -->
+          <div class="dash-top">
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Score moyen équipe</div>
+              <div class="dash-kpi-val">72<span style="font-size:14px;color:var(--ink4);font-weight:400">/100</span></div>
+              <div class="dash-kpi-delta">+6 pts vs mois dernier</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Mandats exclusifs</div>
+              <div class="dash-kpi-val">43<span style="font-size:14px;color:var(--ink4);font-weight:400">%</span></div>
+              <div class="dash-kpi-delta">+11 pts</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">R2 verrouillés en R1</div>
+              <div class="dash-kpi-val">87<span style="font-size:14px;color:var(--ink4);font-weight:400">%</span></div>
+              <div class="dash-kpi-delta">+4 pts</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Alertes actives</div>
+              <div class="dash-kpi-val" style="color:#f5c878">3</div>
+              <div class="dash-kpi-delta down">2 en attente</div>
+            </div>
+          </div>
+
+          <!-- Body cols -->
+          <div class="dash-cols">
+            <!-- Entretiens récents -->
+            <div class="dash-card">
+              <div class="dash-card-title">
+                <span>Entretiens récents</span>
+                <span class="live">En direct</span>
+              </div>
+              <div>
+                <div class="dash-row">
+                  <div class="name">M. Dupont</div>
+                  <div class="phase-bar"><span style="width:82%"></span></div>
+                  <div class="score">82</div>
+                  <div class="status">R2 signé</div>
+                </div>
+                <div class="dash-row">
+                  <div class="name">S. Bensa</div>
+                  <div class="phase-bar"><span style="width:74%"></span></div>
+                  <div class="score">74</div>
+                  <div class="status">R2 posé</div>
+                </div>
+                <div class="dash-row">
+                  <div class="name">K. Ferry</div>
+                  <div class="phase-bar"><span class="warn" style="width:58%"></span></div>
+                  <div class="score warn">58</div>
+                  <div class="status">À revoir</div>
+                </div>
+                <div class="dash-row">
+                  <div class="name">L. Martel</div>
+                  <div class="phase-bar"><span style="width:79%"></span></div>
+                  <div class="score">79</div>
+                  <div class="status">R2 posé</div>
+                </div>
+                <div class="dash-row">
+                  <div class="name">A. Reynaud</div>
+                  <div class="phase-bar"><span class="alert" style="width:36%"></span></div>
+                  <div class="score alert">36</div>
+                  <div class="status" style="color:#ff8878">Alerte</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alertes -->
+            <div class="dash-card">
+              <div class="dash-card-title"><span>Alertes du jour</span></div>
+              <div class="dash-alert alert">
+                <b>A. Reynaud · Score 36</b>
+                Capitulation prix détectée en P3. Pas de next step daté en sortie de R2.
+              </div>
+              <div class="dash-alert">
+                <b>K. Ferry · Pattern récurrent</b>
+                Objection « pas de vitrine » non anticipée sur 4 entretiens.
+              </div>
+              <div class="dash-alert">
+                <b>Équipe · Sur 7 jours</b>
+                3 conseillers sur 5 sans date R2 verrouillée en sortie de R1.
+              </div>
+            </div>
+          </div>
+
+          <!-- Progression graph -->
+          <div class="dash-card">
+            <div class="dash-card-title"><span>Progression score moyen · 8 dernières semaines</span></div>
+            <div class="dash-mini-bars">
+              <i style="height:48%"></i><i style="height:54%"></i><i style="height:51%"></i>
+              <i style="height:60%"></i><i style="height:63%"></i><i style="height:68%"></i>
+              <i style="height:70%"></i><i style="height:78%"></i>
+            </div>
+            <div class="dash-mini-legend">
+              <span>S-8</span><span>S-7</span><span>S-6</span><span>S-5</span>
+              <span>S-4</span><span>S-3</span><span>S-2</span><span>S-1</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-    <div class="steps">
+
+    <div class="dash-caption">
       <span>Saisir l'adresse</span>
       <span class="arrow">→</span>
       <span>Enregistrer le RDV</span>
@@ -805,8 +1050,8 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
       <article class="plan featured reveal">
         <span class="plan-badge">Populaire</span>
         <div class="plan-name">Équipe</div>
-        <div class="plan-price">79 €<small> + 29 €/conseiller/mois (min 3)</small></div>
-        <div class="plan-for">Pour les responsables de réseau</div>
+        <div class="plan-price">79 €<small> + 29 €/conseiller/mois</small></div>
+        <div class="plan-for">Pour les agences et réseaux · 5 à 20 personnes</div>
         <div class="plan-meta">2 000 min/conseiller incluses · +0,03 €/min</div>
         <ul class="plan-feats">
           <li>Tout Solo</li>
@@ -821,9 +1066,9 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 
       <!-- Business -->
       <article class="plan reveal">
-        <div class="plan-name">Business</div>
-        <div class="plan-price">199 €<small> + 22 €/conseiller/mois (min 10)</small></div>
-        <div class="plan-for">Pour les directions commerciales</div>
+        <div class="plan-name">Entreprise</div>
+        <div class="plan-price">199 €<small> + 22 €/conseiller/mois</small></div>
+        <div class="plan-for">Pour les directions commerciales · 20+ personnes</div>
         <div class="plan-meta">Minutes illimitées</div>
         <ul class="plan-feats">
           <li>Tout Équipe</li>
@@ -850,16 +1095,19 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
     </div>
     <div class="testi">
       <div class="quote reveal">
-        <blockquote>[Témoignage bêta — à compléter]</blockquote>
-        <cite>Prénom N. · IAD · Auvergne-Rhône-Alpes</cite>
+        <span class="pastille pst-g">Réseau IAD</span>
+        <blockquote>« Le premier mois, j'ai vu sur mon dashboard que je parlais 55 % du temps au R1. Le vendeur n'avait aucune chance de me dire ce qui comptait vraiment. Depuis, je me tais. Et je signe plus. »</blockquote>
+        <cite><b>Karim B.</b>Mandataire · Auvergne-Rhône-Alpes</cite>
       </div>
       <div class="quote reveal">
-        <blockquote>[Témoignage bêta — à compléter]</blockquote>
-        <cite>Prénom N. · Safti · Île-de-France</cite>
+        <span class="pastille pst-b">Réseau Safti</span>
+        <blockquote>« Le brief R0 a changé ma crédibilité en entretien. J'arrive, je connais l'historique du bien mieux que le vendeur. Ça pose tout, tout de suite. »</blockquote>
+        <cite><b>Sophie M.</b>Mandataire · Île-de-France</cite>
       </div>
       <div class="quote reveal">
-        <blockquote>[Témoignage bêta — à compléter]</blockquote>
-        <cite>Prénom N. · 3% Immo · Provence</cite>
+        <span class="pastille pst-a">Agence indépendante</span>
+        <blockquote>« Je manage 14 conseillers. Avant Methodr, je pilotais à la voix. Aujourd'hui je vois en temps réel qui a capitulé sur le prix et qui a pas verrouillé son R2. En une semaine j'ai recadré ce que je n'avais pas vu en trois mois. »</blockquote>
+        <cite><b>Thomas R.</b>Directeur d'agence · Nouvelle-Aquitaine</cite>
       </div>
     </div>
   </div>
@@ -888,11 +1136,13 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
     <div class="founders">
       <div class="founder">
         <div class="founder-name">Anthony Bette</div>
-        <div class="founder-role">Co-fondateur · Développement</div>
+        <div class="founder-role">Co-fondateur · Produit &amp; développement</div>
+        <p class="founder-bio">Préfère rester dans sa chambre à coder quand il fait soleil. Parle peu, livre beaucoup. C'est lui qui a mis l'enregistrement offline au point la nuit où personne ne comptait dessus.</p>
       </div>
       <div class="founder">
         <div class="founder-name">Alex Nicolo</div>
-        <div class="founder-role">Co-fondateur · Développement</div>
+        <div class="founder-role">Co-fondateur · Développement &amp; stratégie</div>
+        <p class="founder-bio">Geek sportif, obsédé par la performance — la sienne, celle de l'outil, celle des mandataires qui l'utilisent. Court plus vite qu'il ne déploie, ce qui n'est pas rien.</p>
       </div>
     </div>
   </div>
@@ -901,10 +1151,17 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 <!-- FORMATION (discrète) -->
 <section class="formation" id="formation" aria-labelledby="sf">
   <div class="wrap">
+
+    <div class="formation-accroche">
+      <div class="eyebrow">Formation professionnelle · Immobilier</div>
+      <h2 id="sf">Avant d'être un outil, Methodr était <em>une méthode.</em></h2>
+      <p>Methodr n'est pas né devant un écran. Il est né sur le terrain, dans les salons de vendeurs, dans les R2 où se joue vraiment la signature du mandat exclusif. La méthode que l'outil automatise aujourd'hui, nous l'avons d'abord enseignée — à des centaines de mandataires, en agence, en réseau, en présentiel.</p>
+      <p>Nos formateurs sont des professionnels de haut niveau de la transaction immobilière. Ils ne parlent pas en théorie. Ils ont pris des mandats. Ils en ont perdu. Ils ont recommencé. Et ils ont distillé, rendez-vous après rendez-vous, le plan de vente optimal de la prise de mandat exclusive — celui que vous retrouvez aujourd'hui calibré dans Methodr.</p>
+    </div>
+
     <div class="formation-head">
-      <div class="eyebrow muted">Formation professionnelle · Immobilier</div>
-      <h2 id="sf">Parcours prise de mandat — R0 · R1 · R2</h2>
-      <p>Pour les réseaux et agences qui souhaitent former leurs équipes à la méthode terrain avant de déployer l'outil. Éligible OPCO EP · AGEFICE · FIFPL.</p>
+      <h3>Parcours prise de mandat — R0 · R1 · R2</h3>
+      <p>Pour les réseaux et agences qui veulent former leurs équipes à la méthode terrain avant — ou en parallèle — du déploiement de l'outil. Éligible OPCO EP · AGEFICE · FIFPL.</p>
     </div>
 
     <div class="mods">
