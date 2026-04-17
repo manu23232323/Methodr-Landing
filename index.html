@@ -341,6 +341,48 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
 .founder-role{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink4);text-transform:uppercase}
 @media(max-width:768px){.founders{grid-template-columns:1fr}}
 
+/* ——— S3 HOWTO (pédagogique) ——— */
+.howto-head{max-width:820px;margin-bottom:56px}
+.howto-head h2{margin-bottom:16px}
+.howto-head p{font-size:16px;color:var(--ink3);line-height:1.6;max-width:720px}
+
+.howto{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule);
+  background:#fff;
+}
+.htstep{
+  padding:32px 26px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:14px;position:relative;
+}
+.htstep-num{
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  color:var(--g2);text-transform:uppercase;
+}
+.htstep-ico{
+  color:var(--ink);margin-bottom:4px;
+}
+.htstep h3{
+  font-family:var(--sans);font-size:16px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.3;
+}
+.htstep p{
+  font-size:13px;color:var(--ink3);line-height:1.6;
+}
+.htstep .htstep-note{
+  margin-top:auto;padding-top:14px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+  color:var(--g2);text-transform:uppercase;line-height:1.6;
+}
+
+@media(max-width:1100px){
+  .howto{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .howto{grid-template-columns:1fr;border-left:none;border-top:none}
+  .htstep{border-right:none;border-left:none}
+}
+
 /* ——— FORMATION ——— */
 .formation{padding:80px 0;background:var(--paper2)}
 .formation-head{max-width:780px;margin-bottom:40px;border-top:1px solid var(--rule);padding-top:32px}
@@ -485,59 +527,6 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
       <button class="btn btn-primary" data-open-modal>Essayer 14 jours — sans carte</button>
       <a href="#demo" class="btn btn-ghost-dark">Voir la démo 60s</a>
     </div>
-
-    <div class="mockups" aria-hidden="true">
-      <!-- Mockup 1 — Brief R0 -->
-      <div class="mock">
-        <div class="mock-head"><span>09:42</span><span class="dot"></span></div>
-        <div class="mock-title">R0 · Brief</div>
-        <div class="mock-h">12 rue des Tilleuls, Lyon 6</div>
-        <div style="display:flex;flex-direction:column;gap:0;margin-top:6px">
-          <div class="mock-line"><span>Prix médian m²</span><span>6 420 €</span></div>
-          <div class="mock-line"><span>Surface parcelle</span><span>412 m²</span></div>
-          <div class="mock-line"><span>Année construction</span><span>1978</span></div>
-          <div class="mock-line"><span>Historique annonce</span><span>385k · 118j</span></div>
-        </div>
-        <div style="margin-top:auto;display:flex;flex-direction:column;gap:6px">
-          <span class="mock-chip a">Signal historique</span>
-          <span style="font-size:10px;color:#c8c8c0;line-height:1.4">Bien retiré après 118j. Motivation réelle à creuser au R1.</span>
-        </div>
-      </div>
-
-      <!-- Mockup 2 — Score R1 -->
-      <div class="mock">
-        <div class="mock-head"><span>Score R1</span><span class="mock-chip g">Prêt</span></div>
-        <div class="mock-score">74<span>/100</span></div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
-          <div class="mock-bar"><span class="mock-bar-name">P1</span><div class="mock-bar-track"><div class="mock-bar-fill" style="width:82%"></div></div></div>
-          <div class="mock-bar"><span class="mock-bar-name">P2</span><div class="mock-bar-track"><div class="mock-bar-fill" style="width:71%"></div></div></div>
-          <div class="mock-bar"><span class="mock-bar-name">P3</span><div class="mock-bar-track"><div class="mock-bar-fill" style="width:88%"></div></div></div>
-          <div class="mock-bar"><span class="mock-bar-name">P4</span><div class="mock-bar-track"><div class="mock-bar-fill" style="width:62%"></div></div></div>
-          <div class="mock-bar"><span class="mock-bar-name">P5</span><div class="mock-bar-track"><div class="mock-bar-fill" style="width:74%"></div></div></div>
-        </div>
-        <div style="margin-top:auto;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--grn)">R2 verrouillée · 18/04 14h</div>
-      </div>
-
-      <!-- Mockup 3 — Coaching -->
-      <div class="mock">
-        <div class="mock-head"><span>Coaching</span><span class="mock-chip g">R2</span></div>
-        <div class="mock-title">3 axes actionnables</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
-          <div class="mock-coach">
-            <b>P3 · Ancrage prix</b>
-            Prix vendeur non demandé avant l'avis de valeur. Règle critique manquée.
-          </div>
-          <div class="mock-coach">
-            <b>P5 · Objection</b>
-            "Pas de vitrine" non anticipée. Traiter dès la phase plan de commercialisation.
-          </div>
-          <div class="mock-coach">
-            <b>P6 · Closing</b>
-            Aucun next step daté. Alerte manager générée.
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -565,7 +554,62 @@ p{color:var(--ink3);font-size:15px;line-height:1.65}
   </div>
 </section>
 
-<!-- S3 SÉQUENCE -->
+<!-- S3 HOWTO — pédagogique -->
+<section class="paper" id="fonctionnement" aria-labelledby="s3how">
+  <div class="wrap">
+    <div class="howto-head">
+      <div class="eyebrow muted">Comment ça marche</div>
+      <h2 id="s3how">Ce que Methodr fait pour vous, concrètement.</h2>
+      <p>Vous gardez votre manière de vendre. Methodr s'occupe de tout ce qui vient avant et après le rendez-vous — les données, l'enregistrement, la transcription, le scoring, le compte rendu, le coaching. Cinq étapes invisibles qui changent ce que vous faites sur le terrain.</p>
+    </div>
+
+    <div class="howto">
+
+      <div class="htstep">
+        <div class="htstep-num">Étape 01</div>
+        <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>Préparer le rendez-vous</h3>
+        <p>Vous saisissez l'adresse du bien avant d'y aller. En 30 secondes, vous avez le prix médian m² du quartier, l'historique des annonces passées, les données cadastrales et une phrase d'accroche déjà prête.</p>
+        <div class="htstep-note">Vous arrivez informé</div>
+      </div>
+
+      <div class="htstep">
+        <div class="htstep-num">Étape 02</div>
+        <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="2" width="6" height="14" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M8 22h8"/></svg>
+        <h3>Capturer l'entretien</h3>
+        <p>Vous enregistrez le rendez-vous en un tap sur votre téléphone, même sans réseau. Vous posez votre téléphone et vous vendez normalement. Methodr se synchronise tout seul dès que vous retrouvez du réseau.</p>
+        <div class="htstep-note">Vous restez concentré sur le vendeur</div>
+      </div>
+
+      <div class="htstep">
+        <div class="htstep-num">Étape 03</div>
+        <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
+        <h3>Transcrire et comprendre</h3>
+        <p>Methodr transcrit l'entretien et sépare votre voix de celle du vendeur. Chaque moment clé est identifié : motivation réelle, délai, projet aval, objection soulevée, prix demandé. Vous savez exactement ce qui s'est dit — pas ce que vous avez retenu.</p>
+        <div class="htstep-note">Zéro saisie manuelle</div>
+      </div>
+
+      <div class="htstep">
+        <div class="htstep-num">Étape 04</div>
+        <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20V10M9 20V4M15 20v-7M21 20V7"/></svg>
+        <h3>Scorer chaque phase</h3>
+        <p>L'entretien est scoré phase par phase selon une méthode immobilier — accroche, découverte, bien, signaux décisionnels, closing. Vous savez où vous êtes bon, où vous avez décroché, et si vous avez respecté les règles critiques de la prise de mandat.</p>
+        <div class="htstep-note">Un score objectif · 0 à 100</div>
+      </div>
+
+      <div class="htstep">
+        <div class="htstep-num">Étape 05</div>
+        <svg class="htstep-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
+        <h3>Restituer et coacher</h3>
+        <p>Vous recevez un compte rendu structuré prêt à être glissé dans votre CRM, et 3 à 5 recommandations personnalisées basées sur des moments précis de votre entretien. Pas des conseils génériques — les vôtres, calibrés sur ce que vous avez réellement dit.</p>
+        <div class="htstep-note">Disponible en moins de 10 minutes</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- S4 SÉQUENCE -->
 <section class="paper" id="produit" aria-labelledby="s3">
   <div class="wrap">
     <div class="seq-head">
