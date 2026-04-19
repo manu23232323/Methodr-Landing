@@ -1,0 +1,7 @@
+# Methodr.io — robots.txt
+# Crawlers autorisés à indexer l'ensemble du site
+User-agent: *
+Allow: /
+
+# Localisation du sitemap
+Sitemap: https://methodr.io/sitemap.xml
