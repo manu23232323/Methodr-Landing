@@ -7,8 +7,8 @@
 ## État actuel
 
 **Dernière mise à jour :** 19 avril 2026
-**Phase :** Fondations techniques COMPLÈTES + vérification Google Search Console déployée
-**Prochain jalon :** Valider la propriété côté Google (clic "Vérifier" dans l'interface) + soumettre le sitemap
+**Phase :** Fondations techniques COMPLÈTES + vérification Google validée + accueil indexé
+**Prochain jalon :** Soumettre sitemap.xml dans Google Search Console (2 min) → indexation des 3 pages légales
 
 ---
 
@@ -210,9 +210,9 @@ Idées d'articles calibrés sur des intentions de recherche réelles :
 | 19/04/2026 | Audit SEO complet du site en production | Claude | Tout le minimum vital confirmé en place |
 | 19/04/2026 | Création du fichier SEO-ROADMAP.md (cette version) | Claude | Fichier de suivi permanent en place |
 | 19/04/2026 | Ajout balise google-site-verification dans le `<head>` + fichier HTML de vérification à la racine | Claude | 2 méthodes de vérification Google Search Console actives en production |
-| _à compléter_ | Validation de la propriété dans Google Search Console par Manu | Manu | _à documenter_ |
-| _à compléter_ | Soumission sitemap dans Google Search Console | Manu | _à documenter_ |
-| _à compléter_ | Première demande d'indexation manuelle | Manu | _à documenter_ |
+| 19/04/2026 | Validation de la propriété dans Google Search Console | Manu | ✅ Propriété validée · accueil indexé · HTTPS confirmé · demande d'indexation effectuée |
+| _à compléter_ | Soumission sitemap.xml dans Google Search Console | Manu | _à documenter_ |
+| _à compléter_ | Vérifier indexation des 3 pages légales (sous 72h) | Manu | _à documenter_ |
 
 ---
 
