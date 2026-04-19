@@ -7,8 +7,8 @@
 ## État actuel
 
 **Dernière mise à jour :** 19 avril 2026
-**Phase :** Fondations techniques COMPLÈTES + vérification Google validée + accueil indexé
-**Prochain jalon :** Soumettre sitemap.xml dans Google Search Console (2 min) → indexation des 3 pages légales
+**Phase :** ✅ Phase 1 COMPLÈTE — fondations techniques + Google Search Console validée + sitemap soumis
+**Prochain jalon :** Attendre 72h et vérifier que les 3 pages légales sont indexées · ensuite Phase 2 quand produit stabilisé
 
 ---
 
@@ -211,8 +211,9 @@ Idées d'articles calibrés sur des intentions de recherche réelles :
 | 19/04/2026 | Création du fichier SEO-ROADMAP.md (cette version) | Claude | Fichier de suivi permanent en place |
 | 19/04/2026 | Ajout balise google-site-verification dans le `<head>` + fichier HTML de vérification à la racine | Claude | 2 méthodes de vérification Google Search Console actives en production |
 | 19/04/2026 | Validation de la propriété dans Google Search Console | Manu | ✅ Propriété validée · accueil indexé · HTTPS confirmé · demande d'indexation effectuée |
-| _à compléter_ | Soumission sitemap.xml dans Google Search Console | Manu | _à documenter_ |
-| _à compléter_ | Vérifier indexation des 3 pages légales (sous 72h) | Manu | _à documenter_ |
+| 19/04/2026 | Soumission sitemap.xml dans Google Search Console | Manu | ✅ « Opération effectuée » · 4 URLs découvertes · première lecture Google 19/04/2026 |
+| _à compléter_ | Vérifier indexation des 3 pages légales (sous 72h) | Manu | _à documenter dans 3-4 jours_ |
+| _à compléter_ | Bing Webmaster Tools — import depuis GSC (5 min, optionnel) | Manu | _à documenter_ |
 
 ---
 
